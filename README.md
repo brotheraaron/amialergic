@@ -10,6 +10,7 @@ Credit to the resources that have brought me this far.
     How to make an app that scans barcodes: https://www.youtube.com/watch?v=xcWnVKnZBgk
     How to create your apk: https://www.youtube.com/watch?v=BfuOn5LuOA4
     API example: https://world.openfoodfacts.org/api/v0/product/737628064502.json
+    How to link android studio with GitHub: https://medium.com/code-yoga/how-to-link-android-studio-with-github-312037a13b99
 
 2021-02-05T04:42+00:00 First iteration, app only scans barcodes and returns the number.
 
