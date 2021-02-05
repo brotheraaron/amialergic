@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">amialergic</string>
+    <string name="results_here">Results here</string>
+    <string name="scan">SCAN</string>
+</resources>
