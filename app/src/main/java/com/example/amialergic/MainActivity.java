@@ -40,17 +40,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-        if (intentResult != null){
-            if (intentResult.getContents() == null){
-                textView.setText("Cancelled");
-            }else{
-                textView.setText(intentResult.getContents());
-            }
+        if (intentResult != null) if (intentResult.getContents() == null) {
+            textView.setText("Cancelled");
+        } else {
+            textView.setText(intentResult.getContents());
         }
 
         super.onActivityResult(requestCode, resultCode, data);
 
     }
+
+    /*
+    URL url = new URL("https://world.openfoodfacts.org/api/v0/product/" + intentResult.getContents() + ".json");
+try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+    for (String line; (line = reader.readLine()) != null;) {
+        System.out.println(line);
+    }
+}
+     */
 
 
        /*
