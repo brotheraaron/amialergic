@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
         if (intentResult != null) if (intentResult.getContents() == null) {
             textView.setText("Cancelled");
         } else {
-            textView.setText(intentResult.getContents());
+            // pretty sure this is how I get the string the barcode scan is returning.
+            String resultContents = intentResult.getContents();
+            textView.setText(resultContents);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
