@@ -15,6 +15,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) /* throws MalformedURLException */ {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if (intentResult != null) if (intentResult.getContents() == null) {
@@ -51,14 +52,23 @@ public class MainActivity extends AppCompatActivity {
             String resultContents = intentResult.getContents();
 
             // pretty sure this is how I get the string the barcode scan is returning.
-            URL url = new URL("https","world.openfoodfacts.org", "/api/v0/product/" + resultContents + ".json");
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-                //                    System.out.println(line);
-                for (String line; (line = reader.readLine()) != null;) textView.setText(line);
-//            textView.setText(resultContents);
-        }
+//            try {
+//                URL url = new URL("https", "world.openfoodfacts.org", "/api/v0/product/" + resultContents + ".json");
+//            } catch (MalformedURLException malformedURLException) {
+//                malformedURLException.printStackTrace();
+//            }
+            try {
+                URL url = new URL("https", "world.openfoodfacts.org", "/api/v0/product/" + resultContents + ".json");
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+                    //                    System.out.println(line);
+                    for (String line; (line = reader.readLine()) != null;) textView.setText(line);
+                textView.setText(resultContents);
+            }
+            } catch (IOException malformedURLException) {
+                //e.printStackTrace();
+            }
 
-        super.onActivityResult(requestCode, resultCode, data);
+            super.onActivityResult(requestCode, resultCode, data);
 
     }
 }
