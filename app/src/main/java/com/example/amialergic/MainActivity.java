@@ -10,8 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,23 +48,20 @@ public class MainActivity extends AppCompatActivity {
         if (intentResult != null) if (intentResult.getContents() == null) {
             textView.setText("Cancelled");
         } else {
-            // pretty sure this is how I get the string the barcode scan is returning.
             String resultContents = intentResult.getContents();
-            textView.setText(resultContents);
+
+            // pretty sure this is how I get the string the barcode scan is returning.
+            URL url = new URL("https","world.openfoodfacts.org", "/api/v0/product/" + resultContents + ".json");
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+                //                    System.out.println(line);
+                for (String line; (line = reader.readLine()) != null;) textView.setText(line);
+//            textView.setText(resultContents);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
 
     }
-
-    /*
-    URL url = new URL("https://world.openfoodfacts.org/api/v0/product/" + intentResult.getContents() + ".json");
-try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-    for (String line; (line = reader.readLine()) != null;) {
-        System.out.println(line);
-    }
 }
-     */
 
 
        /*
