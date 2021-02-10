@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(resultContents);
             }
             } catch (IOException malformedURLException) {
-                //e.printStackTrace();
+                malformedURLException.printStackTrace();
             }
 
             super.onActivityResult(requestCode, resultCode, data);
