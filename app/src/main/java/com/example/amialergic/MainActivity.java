@@ -14,10 +14,13 @@ import androidx.core.app.ActivityCompat;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,9 +34,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textView);
+
         ActivityCompat.requestPermissions(this,
                 new String[] {Manifest.permission.CAMERA},
                 PackageManager.PERMISSION_GRANTED);
+
+
     }
 
 
@@ -43,30 +49,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) /* throws MalformedURLException */ {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)  {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if (intentResult != null) if (intentResult.getContents() == null) {
             textView.setText("Cancelled");
         } else {
-            String resultContents = intentResult.getContents();
+            OkHttpClient client = new OkHttpClient();
 
-            // pretty sure this is how I get the string the barcode scan is returning.
-//            try {
-//                URL url = new URL("https", "world.openfoodfacts.org", "/api/v0/product/" + resultContents + ".json");
-//            } catch (MalformedURLException malformedURLException) {
-//                malformedURLException.printStackTrace();
-//            }
-            try {
-                URL url = new URL("https", "world.openfoodfacts.org", "/api/v0/product/" + resultContents + ".json");
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-                    //                    System.out.println(line);
-                    for (String line; (line = reader.readLine()) != null;) textView.setText(line);
-                textView.setText(resultContents);
-            }
-            } catch (IOException malformedURLException) {
-                malformedURLException.printStackTrace();
-            }
+//            String url = "http://example.com/large.zip";
+//            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+
+            String results = intentResult.getContents();
+
+            String url = "https://world.openfoodfacts.org/api/v0/product/" + results + ".json";
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        final String myResponse = response.body().string();
+
+                        MainActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                textView.setText(myResponse);
+                            }
+                        });
+                    }
+                }
+            });
 
             super.onActivityResult(requestCode, resultCode, data);
 
