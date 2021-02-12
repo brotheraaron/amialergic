@@ -74,12 +74,18 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
-                        final String myResponse = response.body().string();
+                        final String myResponse = response.body().toString().toLowerCase();
 
                                 MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textView.setText(myResponse);
+                                String hasAllergen;
+                                if (myResponse.contains("corn")) {
+                                        hasAllergen = "True";
+                            } else{
+                                        hasAllergen = "False";
+                                    }
+                                textView.setText(hasAllergen);
                             }
                         });
                     }
