@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             OkHttpClient client = new OkHttpClient();
 
+//            String url = "http://example.com/large.zip";
+//            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+
             String results = intentResult.getContents();
 
             String url = "https://world.openfoodfacts.org/api/v0/product/" + results + ".json";
@@ -74,31 +77,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
-                        final String myResponse = response.body().toString().toLowerCase();
+                        final String myResponse = response.body().string();
 
-                                MainActivity.this.runOnUiThread(new Runnable() {
+                        MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-//                                String master = "Hello World Baeldung!";
-//                                String target = "Baeldung";
-//                                String replacement = "Java";
-//                                String processed = master.replace(target, replacement);
-//                                assertTrue(processed.contains(replacement));
-//                                assertFalse(processed.contains(target));
-
-//                                String nonWords = "\"";
-//                                String processed = myResponse.replace(nonWords, "");
-//
-//                                String hasAllergen;
-//                                System.out.println(Str.matches("(.*)Tutorials(.*)"));
-//                                if (myResponse.matches("(.*)corn(.*)")) {
-//                                        hasAllergen = "True";
-//                            } else{
-//                                        hasAllergen = "False";
-//                                    }
-                                String processed = "Testing";
-                                textView.setText(processed + "\n" + myResponse);
-
+                                textView.setText(myResponse);
                             }
                         });
                     }
