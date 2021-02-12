@@ -13,6 +13,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
 
@@ -79,10 +81,14 @@ public class MainActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         final String myResponse = response.body().string();
 
+                        Object document = Configuration.defaultConfiguration().jsonProvider().parse(myResponse);
+
+                        String ingredients0 = JsonPath.read(document, "$.product.ingredients_text");
+
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textView.setText(myResponse);
+                                textView.setText(ingredients0);
                             }
                         });
                     }
