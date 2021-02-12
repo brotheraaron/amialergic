@@ -57,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             OkHttpClient client = new OkHttpClient();
 
-//            String url = "http://example.com/large.zip";
-//            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-
             String results = intentResult.getContents();
 
             String url = "https://world.openfoodfacts.org/api/v0/product/" + results + ".json";
@@ -79,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         final String myResponse = response.body().string();
 
-                        MainActivity.this.runOnUiThread(new Runnable() {
+                                MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 textView.setText(myResponse);

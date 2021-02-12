@@ -8,13 +8,13 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="228dp"
-        android:layout_height="114dp"
-        android:layout_marginTop="291dp"
+        android:layout_width="357dp"
+        android:layout_height="591dp"
+        android:layout_marginTop="16dp"
         android:clickable="false"
         android:text="@string/results_here"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
