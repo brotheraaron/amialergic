@@ -91,24 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
             super.onActivityResult(requestCode, resultCode, data);
 
+        }
     }
-}
-
-
-       /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-    if (intentResult != null){
-    if (intentResult.getContents() == null){
-    textView.setText(“Cancelled”);
-    }else {
-    textView.setText(intentResult.getContents());
-    }
-    }
-    super.onActivityResult(requestCode, resultCode, data);
-    }
-    }
-
-     */
 }
