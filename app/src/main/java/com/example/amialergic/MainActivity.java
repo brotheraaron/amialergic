@@ -83,12 +83,26 @@ public class MainActivity extends AppCompatActivity {
 
                         Object document = Configuration.defaultConfiguration().jsonProvider().parse(myResponse);
 
-                        String ingredients0 = JsonPath.read(document, "$.product.ingredients_text");
+                        String ingredientsRaw = JsonPath.read(document, "$.product.ingredients_text");
+                        String ingredients0 = ingredientsRaw.toLowerCase();
 
+//                        if (!inputString.contains(item)) {
+//                            found = false;
+//                            break;
+                        String allergen = "corn";
+                        String hasAllergen = "";
+//                        System.out.println(Str.matches("(.*)Tutorials(.*)"));
+                        if (!ingredients0.matches("(.*)corn(.*)")) {
+                            hasAllergen = "False";
+                        } else {
+                            hasAllergen = "True";
+                        }
+
+                        String finalHasAllergen = hasAllergen;
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textView.setText(ingredients0);
+                                textView.setText(finalHasAllergen);
                             }
                         });
                     }
