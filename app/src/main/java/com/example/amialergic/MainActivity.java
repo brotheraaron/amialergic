@@ -86,16 +86,17 @@ public class MainActivity extends AppCompatActivity {
 //                                assertTrue(processed.contains(replacement));
 //                                assertFalse(processed.contains(target));
 
-                                String nonWords = "\"";
-                                String processed = myResponse.replace(nonWords, "");
-
-                                String hasAllergen;
+//                                String nonWords = "\"";
+//                                String processed = myResponse.replace(nonWords, "");
+//
+//                                String hasAllergen;
 //                                System.out.println(Str.matches("(.*)Tutorials(.*)"));
 //                                if (myResponse.matches("(.*)corn(.*)")) {
 //                                        hasAllergen = "True";
 //                            } else{
 //                                        hasAllergen = "False";
 //                                    }
+                                String processed = "Testing";
                                 textView.setText(processed + "\n" + myResponse);
 
                             }
