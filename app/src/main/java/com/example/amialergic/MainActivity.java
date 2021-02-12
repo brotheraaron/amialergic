@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
 //                            } else{
 //                                        hasAllergen = "False";
 //                                    }
-                                textView.setText(processed);
+                                textView.setText(processed + "\n" + myResponse);
+
                             }
                         });
                     }
