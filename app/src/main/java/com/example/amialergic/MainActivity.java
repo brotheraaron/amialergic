@@ -79,14 +79,24 @@ public class MainActivity extends AppCompatActivity {
                                 MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+//                                String master = "Hello World Baeldung!";
+//                                String target = "Baeldung";
+//                                String replacement = "Java";
+//                                String processed = master.replace(target, replacement);
+//                                assertTrue(processed.contains(replacement));
+//                                assertFalse(processed.contains(target));
+
+                                String nonWords = "\"";
+                                String processed = myResponse.replace(nonWords, "");
+
                                 String hasAllergen;
 //                                System.out.println(Str.matches("(.*)Tutorials(.*)"));
-                                if (myResponse.matches("(.*)corn(.*)")) {
-                                        hasAllergen = "True";
-                            } else{
-                                        hasAllergen = "False";
-                                    }
-                                textView.setText(hasAllergen);
+//                                if (myResponse.matches("(.*)corn(.*)")) {
+//                                        hasAllergen = "True";
+//                            } else{
+//                                        hasAllergen = "False";
+//                                    }
+                                textView.setText(processed);
                             }
                         });
                     }
