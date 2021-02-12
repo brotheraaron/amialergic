@@ -102,9 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textView.setText(finalHasAllergen);
-                                textView.setText("\n");
-                                textView.setText(ingredients0);
+                                textView.setText(finalHasAllergen + "\n" + ingredients0);
                             }
                         });
                     }
