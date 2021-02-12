@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 String hasAllergen;
-                                if (myResponse.contains("corn")) {
+//                                System.out.println(Str.matches("(.*)Tutorials(.*)"));
+                                if (myResponse.matches("(.*)corn(.*)")) {
                                         hasAllergen = "True";
                             } else{
                                         hasAllergen = "False";
