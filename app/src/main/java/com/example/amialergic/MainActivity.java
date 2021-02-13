@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
 //                        if (!inputString.contains(item)) {
 //                            found = false;
 //                            break;
-                        String allergen = "corn";
+                        String allergens = "(.*)corn(.*)";
                         String hasAllergen = "";
 //                        System.out.println(Str.matches("(.*)Tutorials(.*)"));
-                        if (!ingredients0.matches("(.*)corn(.*)")) {
+                        if (!ingredients0.matches(allergens)) {
                             hasAllergen = "False";
                         } else {
                             hasAllergen = "True";
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textView.setText(finalHasAllergen);
+                                textView.setText(finalHasAllergen + "\n" + ingredients0);
                             }
                         });
                     }
