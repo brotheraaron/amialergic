@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static boolean isNullOrEmpty(String str) {
-        if(str != null && !str.trim().isEmpty() && !str.isEmpty())
-            return false;
-        return true;
+        return str == null || str.trim().isEmpty() || str.isEmpty();
     }
 
     @Override
@@ -94,18 +92,14 @@ public class MainActivity extends AppCompatActivity {
                         String ingredientsRaw = JsonPath.read(document, "$.product.ingredients_text");
                         String ingredients0 = ingredientsRaw.toLowerCase();
 
-//                        if (!inputString.contains(item)) {
-//                            found = false;
-//                            break;
-                        String allergen = "corn";
-                        String hasAllergen = "";
+                        String allergen = "(.*)corn(.*)";
+                        String hasAllergen;
 
-                        if(isNullOrEmpty(ingredients0)) {
-                            hasAllergen = "No results found.";
-                        } else {
-                            if (!ingredients0.matches("(.*)corn(.*)")) hasAllergen = "False";
-                            else hasAllergen = "True";
-                        }
+                        hasAllergen = ingredients0;
+
+//                        if(isNullOrEmpty(ingredients0)) hasAllergen = "No results found.";
+//                        else if (!ingredients0.matches(allergen)) hasAllergen = "False";
+//                        else hasAllergen = "True";
 
 
                         String finalHasAllergen = hasAllergen;
