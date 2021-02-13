@@ -69,6 +69,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.jayway.jsonpath:json-path:2.5.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
     //implementation 'com.android.support:appcompat-v7:28.0.0'
     //com.google.android.material:material
     testImplementation 'junit:junit:4.13.1'
