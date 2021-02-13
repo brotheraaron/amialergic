@@ -95,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         String allergen = "(.*)corn(.*)";
                         String hasAllergen;
 
-                        hasAllergen = ingredients0;
+                        //hasAllergen = ingredients0;
+                        if(isNullOrEmpty(ingredients0)) hasAllergen ="Is null.\n";
+                        else hasAllergen = "Is not null.\n";
 
 //                        if(isNullOrEmpty(ingredients0)) hasAllergen = "No results found.";
 //                        else if (!ingredients0.matches(allergen)) hasAllergen = "False";
