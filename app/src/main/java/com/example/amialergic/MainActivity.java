@@ -17,6 +17,9 @@ import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,8 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void ScanButton(View view) {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        Collection<String> BARCODE_TYPES =
+        Collections.unmodifiableCollection(Arrays.asList("UPC_A", "UPC-E", "EAN_8", "EAN_13"));
         intentIntegrator.initiateScan();
     }
+
+//    private void scanBarcode() {
+//        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+//        Collection<String> BARCODE_TYPES =
+//                Collections.unmodifiableCollection(Arrays.asList("UPC_A", "EAN_8", "EAN_13"));
+//        integrator.initiateScan(BARCODE_TYPES);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)  {
