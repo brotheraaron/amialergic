@@ -55,12 +55,11 @@ public class MainActivity extends AppCompatActivity {
         intentIntegrator.initiateScan(BARCODE_TYPES);
     }
 
-//    private void scanBarcode() {
-//        IntentIntegrator integrator = new IntentIntegrator(getActivity());
-//        Collection<String> BARCODE_TYPES =
-//                Collections.unmodifiableCollection(Arrays.asList("UPC_A", "EAN_8", "EAN_13"));
-//        integrator.initiateScan(BARCODE_TYPES);
-//    }
+    public static boolean isNullOrEmpty(String str) {
+        if(str != null && !str.trim().isEmpty() && !str.isEmpty())
+            return false;
+        return true;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)  {
@@ -70,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("Cancelled");
         } else {
             OkHttpClient client = new OkHttpClient();
-
-//            String url = "http://example.com/large.zip";
-//            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 
             String results = intentResult.getContents();
 
@@ -103,12 +99,14 @@ public class MainActivity extends AppCompatActivity {
 //                            break;
                         String allergen = "corn";
                         String hasAllergen = "";
-//                        System.out.println(Str.matches("(.*)Tutorials(.*)"));
-                        if (!ingredients0.matches("(.*)corn(.*)")) {
-                            hasAllergen = "False";
+
+                        if(isNullOrEmpty(ingredients0)) {
+                            hasAllergen = "No results found.";
                         } else {
-                            hasAllergen = "True";
+                            if (!ingredients0.matches("(.*)corn(.*)")) hasAllergen = "False";
+                            else hasAllergen = "True";
                         }
+
 
                         String finalHasAllergen = hasAllergen;
                         MainActivity.this.runOnUiThread(new Runnable() {
