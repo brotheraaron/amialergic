@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             hasAllergen = "True";
                         }
-
+// adding code to see what repo this commits to. Try #2
                         String finalHasAllergen = hasAllergen;
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
