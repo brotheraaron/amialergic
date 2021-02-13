@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
         Collection<String> BARCODE_TYPES =
         Collections.unmodifiableCollection(Arrays.asList("UPC_A", "UPC-E", "EAN_8", "EAN_13"));
-        intentIntegrator.initiateScan();
+        intentIntegrator.initiateScan(BARCODE_TYPES);
     }
 
 //    private void scanBarcode() {
