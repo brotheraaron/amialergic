@@ -89,20 +89,20 @@ public class MainActivity extends AppCompatActivity {
 //                        if (!inputString.contains(item)) {
 //                            found = false;
 //                            break;
-                        String allergens = "(.*)corn(.*)";
+                        String allergen = "corn";
                         String hasAllergen = "";
 //                        System.out.println(Str.matches("(.*)Tutorials(.*)"));
-                        if (!ingredients0.matches(allergens)) {
+                        if (!ingredients0.matches("(.*)corn(.*)")) {
                             hasAllergen = "False";
                         } else {
                             hasAllergen = "True";
                         }
-// adding code to see what repo this commits to. Try #2
+
                         String finalHasAllergen = hasAllergen;
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textView.setText(finalHasAllergen + "\n" + ingredients0);
+                                textView.setText(finalHasAllergen);
                             }
                         });
                     }
