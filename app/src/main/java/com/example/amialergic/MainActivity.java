@@ -48,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
     public void ScanButton(View view) {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
         try {intentIntegrator.initiateScan();}
-        catch (Throwable e) { e.printStackTrace();}
+        catch (Throwable e) {
+            textView.setText(e.toString());
+            e.printStackTrace();
+        }
 
     }
 
