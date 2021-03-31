@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void ScanButton(View view) {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-        intentIntegrator.initiateScan();
+        try {intentIntegrator.initiateScan();}
+        catch (Throwable e) { e.printStackTrace();}
+
     }
 
     @Override
