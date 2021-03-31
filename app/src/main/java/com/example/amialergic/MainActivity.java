@@ -90,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
                         Object document = Configuration.defaultConfiguration().jsonProvider().parse(myResponse);
                         String ingredients0 = "";
                         String ingredientsRaw = JsonPath.read(document, "$.product.ingredients_text");
+                        if(ingredientsRaw == null) {
+                            textView.setText("Error");
+                        }
+
 //                        String ingredients0 = ingredientsRaw.toLowerCase();
 
                         try {ingredients0 = ingredientsRaw.toLowerCase();}
