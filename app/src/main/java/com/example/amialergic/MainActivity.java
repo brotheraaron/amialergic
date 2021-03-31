@@ -28,7 +28,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private Bundle savedInstanceState;
-    private TextView textView;
+    public TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +120,9 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                try {textView.setText(finalHasAllergen);}
+                                try {
+                                    textView.setText(finalHasAllergen);
+                                }
                                 catch (Exception e) {
                                     textView.setText(e.toString());
                                     e.printStackTrace();
