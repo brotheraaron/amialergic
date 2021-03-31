@@ -124,7 +124,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            super.onActivityResult(requestCode, resultCode, data);
+            try {super.onActivityResult(requestCode, resultCode, data);}
+            catch (Exception e) {
+                textView.setText(e.toString());
+                e.printStackTrace();
+            }
 
         }
     }
