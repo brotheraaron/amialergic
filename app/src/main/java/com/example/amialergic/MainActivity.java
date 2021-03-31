@@ -89,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
 //                        String ingredients0 = ingredientsRaw.toLowerCase();
 
                         try {ingredients0 = ingredientsRaw.toLowerCase();}
-                        catch (Throwable e) { e.printStackTrace();}
+                        catch (Throwable e) {
+                            textView.setText(e.toString());
+                            e.printStackTrace();
+                        }
 
 //                        if (!inputString.contains(item)) {
 //                            found = false;
