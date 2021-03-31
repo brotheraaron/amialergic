@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)  {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-        if (intentResult != null) if (intentResult.getContents() == null) {
+        if (intentResult == null) {
             textView.setText("Cancelled");
         } else {
             OkHttpClient client = new OkHttpClient();
