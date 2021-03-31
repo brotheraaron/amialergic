@@ -90,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
                         Object document = Configuration.defaultConfiguration().jsonProvider().parse(myResponse);
                         String ingredients0 = "";
                         String ingredientsRaw = JsonPath.read(document, "$.product.ingredients_text");
-                        if(ingredientsRaw == null) {
-                            textView.setText("Error");
-                        }
 
 //                        String ingredients0 = ingredientsRaw.toLowerCase();
 
@@ -102,12 +99,8 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-//                        if (!inputString.contains(item)) {
-//                            found = false;
-//                            break;
                         String allergen = "corn";
                         String hasAllergen = "";
-//                        System.out.println(Str.matches("(.*)Tutorials(.*)"));
 
                         try {
                             if (!ingredients0.matches("(.*)corn(.*)")) {
@@ -126,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
-                                    textView.setText(finalHasAllergen);
+                                    textView.setText(finalHasAllergen + '\n' + ingredientsRaw);
                                 }
                                 catch (Exception e) {
                                     textView.setText(e.toString());
