@@ -103,10 +103,17 @@ public class MainActivity extends AppCompatActivity {
                         String allergen = "corn";
                         String hasAllergen = "";
 //                        System.out.println(Str.matches("(.*)Tutorials(.*)"));
-                        if (!ingredients0.matches("(.*)corn(.*)")) {
-                            hasAllergen = "False";
-                        } else {
-                            hasAllergen = "True";
+
+                        try {
+                            if (!ingredients0.matches("(.*)corn(.*)")) {
+                                hasAllergen = "False";
+                            } else {
+                                hasAllergen = "True";
+                            }
+                        }
+                        catch (Exception e) {
+                            textView.setText(e.toString());
+                            e.printStackTrace();
                         }
 
                         String finalHasAllergen = hasAllergen;
