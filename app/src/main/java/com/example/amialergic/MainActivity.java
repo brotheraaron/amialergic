@@ -105,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textView.setText(finalHasAllergen);
+                                try {textView.setText(finalHasAllergen);}
+                                catch (Throwable e) { e.printStackTrace();}
                             }
                         });
                     }
