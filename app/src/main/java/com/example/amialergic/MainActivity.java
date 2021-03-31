@@ -92,7 +92,10 @@ public class MainActivity extends AppCompatActivity {
                         String ingredientsRaw = JsonPath.read(document, "$.product.ingredients_text");
 
 //                        String ingredients0 = ingredientsRaw.toLowerCase();
-
+                        if (ingredientsRaw == null || ingredientsRaw.isEmpty() || ingredientsRaw.equals("null"))
+                        {
+                            textView.setText("Error");
+                        }
                         try {ingredients0 = ingredientsRaw.toLowerCase();}
                         catch (Exception e) {
                             textView.setText(e.toString());
