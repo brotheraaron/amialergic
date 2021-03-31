@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public void ScanButton(View view) {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
         try {intentIntegrator.initiateScan();}
-        catch (Throwable e) {
+        catch (Exception e) {
             textView.setText(e.toString());
             e.printStackTrace();
         }
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 //                        String ingredients0 = ingredientsRaw.toLowerCase();
 
                         try {ingredients0 = ingredientsRaw.toLowerCase();}
-                        catch (Throwable e) {
+                        catch (Exception e) {
                             textView.setText(e.toString());
                             e.printStackTrace();
                         }
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {textView.setText(finalHasAllergen);}
-                                catch (Throwable e) {
+                                catch (Exception e) {
                                     textView.setText(e.toString());
                                     e.printStackTrace();
                                 }
