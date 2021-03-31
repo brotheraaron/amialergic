@@ -108,7 +108,10 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {textView.setText(finalHasAllergen);}
-                                catch (Throwable e) { e.printStackTrace();}
+                                catch (Throwable e) {
+                                    textView.setText(e.toString());
+                                    e.printStackTrace();
+                                }
                             }
                         });
                     }
