@@ -82,9 +82,12 @@ public class MainActivity extends AppCompatActivity {
                         final String myResponse = response.body().string();
 
                         Object document = Configuration.defaultConfiguration().jsonProvider().parse(myResponse);
-
+                        String ingredients0 = "";
                         String ingredientsRaw = JsonPath.read(document, "$.product.ingredients_text");
-                        String ingredients0 = ingredientsRaw.toLowerCase();
+//                        String ingredients0 = ingredientsRaw.toLowerCase();
+
+                        try {ingredients0 = ingredientsRaw.toLowerCase();}
+                        catch (Exception e) { ingredients0 = "Error";}
 
 //                        if (!inputString.contains(item)) {
 //                            found = false;
@@ -109,11 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            try {
-
-                super.onActivityResult(requestCode, resultCode, data);
-            }
-            catch (Exception e) {super.onActivityResult(requestCode, resultCode, data);}
+            super.onActivityResult(requestCode, resultCode, data);
 
         }
     }
